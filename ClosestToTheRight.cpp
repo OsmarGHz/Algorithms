@@ -18,7 +18,7 @@ int main(){
         medium=(iL+sL)/2;
         while (sL>iL+1)
         {
-            if (queries[i]>=elements[medium])
+            if (queries[i]>elements[medium])
             {
                 iL=medium;
                 medium=(iL+sL)/2;
@@ -27,6 +27,6 @@ int main(){
                 medium=(iL+sL)/2;
             }
         }
-        printf(" %lld",sL);
+        printf(" %lld",(sL+1));
     }
 }
