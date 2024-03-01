@@ -7,22 +7,19 @@ int main(){
     int founded;
     scanf("%lld %lld",&n,&k);
     long long elements[n],queries[k];
-    for (long long i = 0; i < n; i++)
-    {
+    for (long long i = 0; i < n; i++){
         scanf("%lld",&elements[i]);
     }
-    for (long long i = 0; i < n; i++)
-    {
+    for (long long i = 0; i < k; i++){
         scanf("%lld",&queries[i]);
     }
-    for (long long i = 0; i < k; i++)
-    {
+    for (long long i = 0; i < k; i++){
         iL=-1;
         sL=n;
         medium=(iL+sL)/2;
         while (sL>iL+1)
         {
-            if (queries[i]>elements[medium])
+            if (queries[i]>=elements[medium])
             {
                 iL=medium;
                 medium=(iL+sL)/2;
