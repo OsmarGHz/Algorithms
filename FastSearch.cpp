@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-    long long int i,n,k,iL,sL,mid,cToTheLeft,cToTheRight,res;
+    long long int i=0,n=0,k=0,iL=0,sL=0,mid=0,cToTheLeft=0,cToTheRight=0,res=0;
     scanf("%lld", &n);
     long long int elements[n];
     for (i = 0; i < n; i++){
@@ -20,9 +20,9 @@ int main(){
         mid=(iL+sL)/2;
         while (sL>iL+1){
             if (queriesP1[i]>elements[mid]){
-                sL=mid;
-            }else{
                 iL=mid;
+            }else{
+                sL=mid;
             }
             mid=(iL+sL)/2;
         }
@@ -33,14 +33,14 @@ int main(){
         mid=(iL+sL)/2;
         while (sL>iL+1){
             if (queriesP2[i]>=elements[mid]){
-                sL=mid;
-            }else{
                 iL=mid;
+            }else{
+                sL=mid;
             }
             mid=(iL+sL)/2;
         }
         cToTheLeft=sL;
-        res=cToTheRight-cToTheLeft;
+        res=cToTheLeft - cToTheRight;
         printf("%lld ",res);
     }
 }
