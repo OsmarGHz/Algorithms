@@ -34,10 +34,13 @@ int main(){
     for (int i = 0; i < n; i++)
     {
         cin >> currentNumber;
+        /*
         if (!(differentNumbers.count(currentNumber)))
         {
             differentNumbers.insert(currentNumber);
         }
+        */
+        differentNumbers.insert(currentNumber);
     }
     cout << differentNumbers.size();    
 }
