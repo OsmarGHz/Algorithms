@@ -16,6 +16,9 @@ int main(){
     set <lli> c;
     vector <lli> todosLosElementos(tamanoTotal);
     vector <lli> diferenciaGruposDe3(tamanoTotal-2);
+
+    //Hacer busqueda binaria por cada posibilidad a los 3 grupos, para ver cual se acerca mas a cada elemento
+
     for (i = 0; i < tamanoA; i++){
         scanf("%lld", &todosLosElementos[i]);
         a.insert(todosLosElementos[i]);
