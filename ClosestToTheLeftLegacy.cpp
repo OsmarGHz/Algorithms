@@ -1,3 +1,7 @@
+//Remember: this code gives the answer in the human-based system position for arrays.
+//Example, in {1,2,3}, position[0] for the computer, is the position[1] for humans.
+//It prints position[0] for humans (position[-1] for the computer, which also doesn´t exist) if there aren't elements "NOT GREATER THAN TARGET"
+
 #include <iostream>
 #include <stdio.h>
 using namespace std;
@@ -18,7 +22,7 @@ int main(){
         medium=(iL+sL)/2;
         while (sL>iL+1)
         {
-            if (queries[i]>elements[medium])
+            if (queries[i]>=elements[medium])
             {
                 iL=medium;
                 medium=(iL+sL)/2;
@@ -27,6 +31,6 @@ int main(){
                 medium=(iL+sL)/2;
             }
         }
-        printf(" %lld",(sL+1));
+        printf(" %lld",sL);
     }
 }

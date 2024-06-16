@@ -1,5 +1,6 @@
+//Warning: this program gives the answer in index from 0 to n-1 (computer-like)
+
 #include <iostream>
-#include <stdio.h>
 using namespace std;
 
 int main(){
@@ -13,20 +14,16 @@ int main(){
         scanf("%lld",&queries[i]);
     }
     for (long long i = 0; i < k; i++){
-        iL=-1;
-        sL=n;
-        medium=(iL+sL)/2;
-        while (sL>iL+1)
-        {
-            if (queries[i]>=elements[medium])
-            {
-                iL=medium;
-                medium=(iL+sL)/2;
+        iL=0;
+        sL=n-1;
+        while (iL<=sL){
+            medium=(iL+sL)/2;
+            if (queries[i]>elements[medium]){
+                iL=medium+1;
             }else{
-                sL=medium;
-                medium=(iL+sL)/2;
+                sL=medium-1;
             }
         }
-        printf(" %lld",sL);
+        printf(" %lld",sL+1);
     }
 }
