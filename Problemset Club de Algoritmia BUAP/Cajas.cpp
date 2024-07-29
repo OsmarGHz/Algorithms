@@ -4,33 +4,40 @@
 using namespace std;
 typedef long long int lli;
 
+bool canWeWinWithThis(int mid, vector<int> boxes, int n){
+    int minimumA = 0, i, j;
+    for (i = 0; i < n;){
+        for (j = 0; j < mid && i < n; j++){
+            if (boxes[i]>=minimumA){
+                i++;
+            }else return false;
+        }
+        minimumA++;
+    }
+    return true;
+}
+
 int main(){
     int n;
     cin >> n;
     vector<int> boxes(n);
     for (int i = 0; i < n; i++) cin >> boxes[i];
-    sort(boxes.begin(), boxes.end());
+    if (n<=10) sort(boxes.begin(), boxes.end());
 
-    int currentIndex, reference, actual, counter=0;
-    while (!boxes.empty()){
-        counter++;
-        currentIndex = boxes.size()-1, reference = boxes[currentIndex];
-        boxes.erase(boxes.begin()+currentIndex);
-        currentIndex--;
+    int lowL=0, hiL=n, answer, mid;
+    mid = (lowL+hiL)/2;
+    while (lowL<=hiL){
+        mid = (lowL+hiL)/2;
+        if (mid>0){
+            if (canWeWinWithThis(mid, boxes, n)){
+                answer = mid;
+                hiL = mid - 1;
+            }else{
+                lowL = mid + 1;
+            }
+        }else break;
     }
     
-    for (int i = boxes.size()-2; i >= 0; i--){
-        reference--;
-        if (reference<0){
-            counter++;
-        }
-        
-        actual = boxes[i];
-        if (actual < reference){
-            reference = actual;
-        }
-        
-    }
-    cout << counter;
+    cout << answer;
     
 }
