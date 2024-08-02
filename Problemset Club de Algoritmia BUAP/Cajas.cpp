@@ -6,6 +6,10 @@ typedef long long int lli;
 
 bool canWeWinWithThis(int mid, vector<int> boxes, int n){
     int minimumA = 0, i, j;
+    if (mid<=0){
+        return false;
+    }
+    
     for (i = 0; i < n;){
         for (j = 0; j < mid && i < n; j++){
             if (boxes[i]>=minimumA){
@@ -22,21 +26,29 @@ int main(){
     cin >> n;
     vector<int> boxes(n);
     for (int i = 0; i < n; i++) cin >> boxes[i];
-    if (n<=10) sort(boxes.begin(), boxes.end());
+    sort(boxes.begin(), boxes.end());
 
     int lowL=0, hiL=n, answer, mid;
-    mid = (lowL+hiL)/2;
-    while (lowL<=hiL){
-        mid = (lowL+hiL)/2;
-        if (mid>0){
+    //while (lowL<=hiL){
+
+    if (n>0){
+        while (lowL<=hiL){
+            mid = (lowL+hiL)/2;
             if (canWeWinWithThis(mid, boxes, n)){
                 answer = mid;
-                hiL = mid - 1;
+                hiL = mid-1;
             }else{
-                lowL = mid + 1;
+                lowL = mid+1;
             }
-        }else break;
+        }
+    }else answer=0;
+    /*
+    if (lowL==0){
+        if (canWeWinWithThis(1, boxes, n)){
+            answer = 1;
+        }
     }
+    */
     
     cout << answer;
     
