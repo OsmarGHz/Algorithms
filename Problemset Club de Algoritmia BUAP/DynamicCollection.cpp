@@ -6,7 +6,7 @@ using namespace std;
 typedef long long lli;
 
 int closestToTheRight(int param1, vector<int> numbers, int n){
-    int left=0, right=n-1, mid, res=-1;
+    int left=0, right=n-1, mid, res=0;
     while (left<=right){
         mid = (left + right)/2;
         if (param1 > numbers[mid]){
@@ -20,7 +20,7 @@ int closestToTheRight(int param1, vector<int> numbers, int n){
 }
 
 int closestToTheLeft(int param1, vector<int> numbers, int n){
-    int left=0, right=n-1, mid, res=n;
+    int left=0, right=n-1, mid, res=n-1;
     while (left<=right){
         mid = (left + right)/2;
         if (param1 >= numbers[mid]){
@@ -42,24 +42,22 @@ int main(){
         cin >> numbers[i];
     }
     sort(numbers.begin(), numbers.end());
-    int election[q], param1[q], param2[q], counter=0, position1, position2, pos;
-    for (int i = 0; i < q; i++){
-        cin >> election[i] >> param1[i];
-        if(election[i]==2) cin >> param2[i];
-    }
+    int election, param1, param2, counter=0, position1, position2, pos;
 
     for (int i = 0; i < q; i++){
-        if (election[i]==1){
-            if (param1[i] > numbers[n-1]){ // Param1 vs greatest element
-                numbers.push_back(param1[i]);
+        cin >> election >> param1;
+        if (election==1){
+            if (param1 > numbers[n-1]){ // Param1 vs greatest element
+                numbers.push_back(param1);
                 n++;
                 continue;
             }
-            pos = closestToTheRight(param1[i], numbers, n);
-            if (numbers[pos]!=param1[i]) numbers[pos] = param1[i];
+            pos = closestToTheRight(param1, numbers, n);
+            if (numbers[pos]!=param1) numbers[pos] = param1;
         }else{
-            position1 = closestToTheRight(param1[i], numbers, n);
-            position2 = closestToTheLeft(param2[i], numbers, n);
+            cin >> param2;
+            position1 = closestToTheRight(param1, numbers, n);
+            position2 = closestToTheLeft(param2, numbers, n);
             counter = position2 - position1 + 1;
             cout << counter << "\n";
         }
