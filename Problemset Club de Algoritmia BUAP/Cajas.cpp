@@ -1,55 +1,38 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#include <vector>
 using namespace std;
-typedef long long int lli;
 
-bool canWeWinWithThis(int mid, vector<int> boxes, int n){
-    int minimumA = 0, i, j;
-    if (mid<=0){
-        return false;
-    }
+bool puedeCon(int mid, vector<int> cajas, int n){
+    if (mid<=0) return false;
     
-    for (i = 0; i < n;){
+    int i=0, j, cont=0;
+    while (i<n){
         for (j = 0; j < mid && i < n; j++){
-            if (boxes[i]>=minimumA){
-                i++;
-            }else return false;
+            if (cajas[i]>=cont) i++;
+            else return false;
         }
-        minimumA++;
+        cont++;
     }
     return true;
 }
 
 int main(){
-    int n;
+    int n, bajo, alto, mid, res;
     cin >> n;
-    vector<int> boxes(n);
-    for (int i = 0; i < n; i++) cin >> boxes[i];
-    sort(boxes.begin(), boxes.end());
+    vector <int> cajas(n);
+    for (int i = 0; i < n; i++) cin >> cajas[i];
+    sort(cajas.begin(), cajas.end());
+    alto = n, bajo = 0;
 
-    int lowL=0, hiL=n, answer, mid;
-    //while (lowL<=hiL){
-
-    if (n>0){
-        while (lowL<=hiL){
-            mid = (lowL+hiL)/2;
-            if (canWeWinWithThis(mid, boxes, n)){
-                answer = mid;
-                hiL = mid-1;
-            }else{
-                lowL = mid+1;
-            }
-        }
-    }else answer=0;
-    /*
-    if (lowL==0){
-        if (canWeWinWithThis(1, boxes, n)){
-            answer = 1;
+    while (alto>=bajo){
+        mid = (alto+bajo)/2;
+        if (puedeCon(mid, cajas, n)){
+            res = mid;
+            alto = mid-1;
+        }else{
+            bajo = mid+1;
         }
     }
-    */
-    
-    cout << answer;
-    
+    cout << res;
 }
