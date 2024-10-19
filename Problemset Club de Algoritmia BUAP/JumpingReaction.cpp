@@ -6,7 +6,7 @@ typedef long long int lli;
 int main(){
     cin.tie(0);
     ios_base::sync_with_stdio(false);
-    lli nSubstances, nQueries, i, lSide, rSide, res, resmod, sumRange, sumRangeToSquare, sumSquaresRange;
+    lli nSubstances, nQueries, i, lSide, rSide, res, resmod, sumRange, sumRangeToSquare, sumSquaresRange, mod=1000000007;
     cin >> nSubstances >> nQueries;
     vector <lli> jumpEnergySub(nSubstances), sumSubstances(nSubstances), squareSubstances(nSubstances), sumSquareSubstances(nSubstances);
     cin >> jumpEnergySub[0];
@@ -25,14 +25,14 @@ int main(){
         rSide--;
         if (lSide==0){
             sumRange = sumSubstances[rSide];
-            sumRangeToSquare = (sumRange*sumRange);
+            sumRangeToSquare = ((sumRange)%mod*(sumRange)%mod)%mod;
             sumSquaresRange = sumSquareSubstances[rSide];
         }else{
             sumRange = sumSubstances[rSide]-sumSubstances[lSide-1];
-            sumRangeToSquare = (sumRange*sumRange);
+            sumRangeToSquare = ((sumRange)%mod*(sumRange)%mod)%mod;
             sumSquaresRange = sumSquareSubstances[rSide]-sumSquareSubstances[lSide-1];
         }
-        res = sumRangeToSquare - sumSquaresRange;
+        res = (sumRangeToSquare%mod) - (sumSquaresRange%mod);
         res /= 2;
         resmod = res%1000000007;
         cout << resmod << "\n";
