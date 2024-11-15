@@ -4,7 +4,7 @@ using namespace std;
 typedef long long int lli;
 
 int pivotIndex(vector<int>& nums) {
-    vector <lli> suffixNums;
+    vector <lli> suffixNums; //SUFFIX!? Check this point
     int sizeOfPI, i;
     sizeOfPI = nums.size();
     suffixNums.resize(sizeOfPI);
