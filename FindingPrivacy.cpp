@@ -5,8 +5,7 @@ using namespace std;
 int main(){
     int k,n,i;
     cin >> k >> n;
-    string a(3*k,'-');
-    if (3*k<n || (2*k)-1>n) a = "*";
+    if (3*k<n || (2*k)-1>n) cout << "*";
     else{
         i=1;
         while (i<3*k){
