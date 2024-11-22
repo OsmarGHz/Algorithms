@@ -12,6 +12,7 @@ void makeSubsequence(int vSize, vector<lli>&sec, vector<int>&subsec, map<int,set
         temp=0;
         for (int j = 0; j < i; j++) if(sec[j]<sec[i] && subsec[j]>temp) temp = subsec[j];
         subsec[i]=temp+1;
+        
         if (mapa.count(subsec[i])){
             mapa[subsec[i]].insert(i);
         }
