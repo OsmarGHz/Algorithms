@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 using lli = long long int;
 
@@ -17,21 +18,21 @@ int main(){
         }
         nBitsA[i] = j;
     }
+    sort(nBitsA.begin(),nBitsA.end());
+    reverse(nBitsA.begin(),nBitsA.end());
     for (i = 0; i < n; i++){
         res = 0;
-        if (nBitsGlobal[0]==1){
+        if (nBitsGlobal[nBitsA[i]-1]>=1){
             res += 1;
-            nBitsGlobal[0]--;
+            nBitsGlobal[nBitsA[i]-1]--;
         }
-        for (j = 1; j < nBitsA[i]; j++){
+        for (j = nBitsA[i]-2; j >= 0; j--){
             res = res << 1;
             if (nBitsGlobal[j]>=1){
                 res += 1;
                 nBitsGlobal[j]--;
             }
-            
         }
-        
+        cout << res << " ";
     }
-    
 }
