@@ -15,8 +15,5 @@ int main(){
             res--;
             cout << res;
         }
-        
-        
     }
-    
 }
