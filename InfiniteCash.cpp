@@ -38,34 +38,39 @@ string intToBinary(int a){
     }
 }
 
-int isStillAlive(lli dInt, string &cMoney, string s, string d, string m, string &howMuch){
-    if (dInt>=cMoney.size()){
+int itWillBreak(lli dInt, string &cMoney, string s, string d, string m, string &howMuch){
+    if (dInt>cMoney.size()){
         howMuch = binarySum(howMuch,intToBinary(cMoney.size()));
-        return 0;
+        return 1;
     }else{
         howMuch = binarySum(howMuch,d);
         cMoney.resize(cMoney.size()-dInt);
         cMoney = binarySum(cMoney,s);
-        if (cMoney.size()>=m.size()){
-            howMuch = "Infinite money!";
-            return 0;
-        }
-        return 1;
+        return 0;
     }
 }
 
 int main(){
     string s,d,m,cMoney,dReverse,howMuch;
-    lli dInt=0;
-    int i,j,result;
+    lli dInt=0, i,j,result;
     cin >> s >> d >> m;
-    if (d.size()>=11){ howMuch = intToBinary(m.size()); }
+    dReverse = d;
+    reverse(dReverse.begin(),dReverse.end());
+    for (i = 0, j=1; i < dReverse.size() && i<10; i++,j*=2){
+        dInt+=j*(dReverse[i]-'0'); }
+    for (; i < dReverse.size(); i++){
+        if (dReverse[i]=='1'){
+            dInt = 1024;
+            break;
+        }
+    }
+    
+    cMoney = m;
+    if (!(m.size()<dInt) && dInt<=s.size()){
+        howMuch = "Infinite money!";
+    }else if (d.size()>=11){ howMuch = intToBinary(m.size()); }
     else{
-        dReverse = d;
-        reverse(dReverse.begin(),dReverse.end());
-        for (i = 0, j=1; i < dReverse.size(); i++,j*=2){ dInt+=j*(dReverse[i]-'0'); }
-        cMoney = m;
-        while (true){ if (!isStillAlive(dInt,cMoney,s,d,m,howMuch)) break; }       
+        while (true){ if (itWillBreak(dInt,cMoney,s,d,m,howMuch)) break; }       
     }
     cout << howMuch;
 }
