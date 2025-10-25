@@ -2,7 +2,8 @@
 using namespace std;
 
 long long fac(int n){
-    if((n-1)>0) return n*fac(n-1);
+    if((n-1)>1) return n*fac(n-1);
+    return n;
 }
 
 int main(){
