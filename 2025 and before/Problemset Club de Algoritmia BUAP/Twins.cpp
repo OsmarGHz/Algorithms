@@ -2,7 +2,7 @@
 using namespace std;
 
 int main(){
-    int n,helper,pointer,sum=0,required,coinsNeeded;
+    int n,helper,pointer,sum=0,required,coinsNeeded=0;
     cin >> n;
     int coins[n];
     for (int i = 0; i < n; i++)
