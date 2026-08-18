@@ -1,4 +1,10 @@
+*
+!*.*
+!*/
+
 *.exe
 tempCodeRunnerFile.cpp
 .vscode
 .idea
+*.dSYM
+*.dSYM.zip
